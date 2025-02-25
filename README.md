@@ -9,7 +9,7 @@ NextBIN is a system utility application designed for Ubuntu-based Linux distribu
 - **Uninstall Manager**: Completely remove installed applications along with leftover files.
 - **Battery Manager**: Monitor battery usage, terminate high-resource processes, and switch power modes (Battery Saver, Balanced, Performance).
 - **Real-time Resource Monitoring**: Similar to `htop`, track CPU, memory, disk, and power usage in real time.
-- **Task Manager-Style UI**: Interactive sorting and filtering for better process management.
+
 
 ---
 
