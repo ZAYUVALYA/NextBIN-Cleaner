@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+echo "Setting permissions for NextBIN..."
+chmod +x /usr/bin/nextbin
+chmod +x /opt/nextbin/src/main.py
+
+echo "Installation completed!"

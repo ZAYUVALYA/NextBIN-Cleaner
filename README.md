@@ -2,63 +2,67 @@
 
 **Status: In Development** 🚀
 
-NextBIN is a system utility application designed for Ubuntu-based Linux distributions. It provides an intuitive and powerful way to manage system resources, uninstall applications, monitor battery usage, and optimize performance with a modern user interface built using **PyQt6**.
+NextBIN is a system utility for Ubuntu-based Linux distributions, designed to clean system cache, manage installed applications, and monitor battery performance with real-time resource tracking.
 
 ## Features
-- **System Cleaner**: Remove cache, old kernels, and unnecessary files to free up space.
-- **Uninstall Manager**: Completely remove installed applications along with leftover files.
-- **Battery Manager**: Monitor battery usage, terminate high-resource processes, and switch power modes (Battery Saver, Balanced, Performance).
-- **Real-time Resource Monitoring**: Similar to `htop`, track CPU, memory, disk, and power usage in real time.
-
+- **System Cleaner**: Remove cache, old kernels, and unnecessary files.
+- **Uninstall Manager**: Fully remove installed applications.
+- **Battery Manager**: Monitor battery usage, terminate high-resource processes, and switch power modes.
+- **Real-time Resource Monitoring**: Track CPU, memory, disk, and power usage.
 
 ---
 
 ## 🔧 Installation Guide (Ubuntu)
 
-### **1. Install Dependencies**
-Before running NextBIN, install the required dependencies:
+### **1. Install System Dependencies**
 ```bash
-sudo apt update && sudo apt install python3 python3-pip python3-venv power-profiles-daemon tlp
+sudo apt update && sudo apt install tlp power-profiles-daemon policykit-1
 ```
 
-Then, install Python dependencies:
+### **2. Install Python Dependencies**
 ```bash
 pip install -r requirements.txt
 ```
 
-### **2. Run NextBIN Manually**
-Since NextBIN is still in development, you need to start it manually:
+### **3. Build and Install NextBIN**
 ```bash
-python3 src/main.py
+make
+sudo dpkg -i build/nextbin-1.0.deb
+```
+If dependencies are missing, run:
+```bash
+sudo apt-get install -f
 ```
 
-This will launch the NextBIN UI, allowing you to use the cleaner, uninstall manager, and battery monitoring features.
+### **4. Run NextBIN**
+```bash
+nextbin
+```
 
 ---
 
 ## 🛠 Development & Contribution
-NextBIN is an open-source project, and contributions are welcome! The project structure is as follows:
+NextBIN is open-source, and contributions are welcome. The project structure is as follows:
 ```
 NextBIN/
-│── src/
-│   │── main.py              # Main entry point
-│   │── ui/                  # UI components
-│   │   │── main_window.py   # Main application window
-│   │   │── cleaner_ui.py    # UI for Cleaner
-│   │   │── uninstall_ui.py  # UI for Uninstall Manager
-│   │   │── battery_ui.py    # UI for Battery Manager
-│   │── core/                # Core logic and backend processing
-│   │   │── cleaner.py       # Cleaning system logic
-│   │   │── uninstall.py     # Uninstall manager logic
-│   │   │── battery.py       # Battery monitoring and task management
-│   │── assets/              # Icons and other assets
-│
-│── debian/                  # Debian package setup (WIP)
-│── docs/                    # Documentation
-│── tests/                   # Unit tests
-│── .gitignore               # Git ignore list
-│── requirements.txt         # Python dependencies
-│── README.md                # Project documentation
+│── src/                    # Source code
+│   │── main.py             # Main application entry point
+│   │── ui/                 # UI components
+│   │── core/               # Core logic
+│   │── assets/             # Icons and other assets
+│── nextbin/                # Debian package directory
+│   │── DEBIAN/             # Debian packaging files
+│   │── usr/bin/            # Symlink for execution
+│   │── opt/nextbin/        # Installed source code location
+│── build/                  # Compiled .deb packages
+│── debian/                 # Original Debian packaging scripts
+│── docs/                   # Documentation
+│── tests/                  # Unit tests
+│── .gitignore              # Ignored files
+│── requirements.txt        # Python dependencies
+│── INSTALL.md              # System dependency guide
+│── README.md               # Project documentation
+│── Makefile                # Build automation
 ```
 
 ### **How to Contribute**
@@ -70,10 +74,8 @@ NextBIN/
 ---
 
 ## 🔄 Future Updates
-NextBIN is actively being developed, and future updates will include:
-- **Automated package installation** for easier setup.
-- **Full Debian packaging** so it can be installed as a `.deb` package.
-- **More advanced system monitoring and optimization features**.
+- Improved `.deb` packaging with automatic dependency resolution.
+- More advanced system monitoring features.
 
-Stay tuned for updates! 🚀
+Stay updated for the latest improvements! 🚀
 
