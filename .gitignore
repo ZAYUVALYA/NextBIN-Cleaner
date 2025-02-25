@@ -1,0 +1,37 @@
+
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+.DS_Store
+
+# Logs
+logs/
+*.log
+debug.log
+
+# Runtime data
+core
+*.lock
+*.pid
+
+# Caches
+.settings/
+.cache/
+.config/
+local_settings.py
+
+# Data build & dependency
+dist/
+build/
+*.egg-info/
+*.spec
+
+# Editor & IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
