@@ -7,7 +7,6 @@ class BatteryManager:
 
     @staticmethod
     def get_battery_status():
-        """Mengambil status baterai."""
         battery = psutil.sensors_battery()
         if battery:
             return {
@@ -18,7 +17,6 @@ class BatteryManager:
 
     @staticmethod
     def get_running_apps():
-        """Mengambil daftar aplikasi yang berjalan, kecuali aplikasi sistem."""
         processes = []
         for proc in psutil.process_iter(['pid', 'name', 'cpu_percent', 'memory_info', 'io_counters']):
             if proc.info['name'] and not any(system_proc in proc.info['name'].lower() for system_proc in BatteryManager.SYSTEM_PROCESSES):
@@ -33,7 +31,6 @@ class BatteryManager:
 
     @staticmethod
     def set_power_plan(mode):
-        """Mengatur mode daya dengan berbagai metode."""
         try:
             if mode == "Battery Saver":
                 subprocess.run(["powerprofilesctl", "set", "power-saver"], check=False)

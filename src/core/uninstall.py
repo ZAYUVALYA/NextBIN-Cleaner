@@ -3,7 +3,6 @@ import subprocess
 class UninstallManager:
     @staticmethod
     def get_installed_packages():
-        """Mendapatkan daftar aplikasi yang terinstal di sistem."""
         try:
             result = subprocess.run(["dpkg-query", "-W", "-f=${Package}\n"], capture_output=True, text=True, check=True)
             return result.stdout.splitlines()
@@ -12,7 +11,6 @@ class UninstallManager:
 
     @staticmethod
     def uninstall_package(package_name):
-        """Menghapus aplikasi Debian yang dipilih oleh pengguna."""
         if package_name:
             try:
                 subprocess.run(["sudo", "apt", "remove", "--purge", package_name, "-y"], check=True)

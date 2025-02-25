@@ -57,20 +57,17 @@ class UninstallUI(QWidget):
         self.load_installed_apps()
 
     def load_installed_apps(self):
-        """Muat daftar aplikasi yang terinstal."""
         self.app_list.clear()
         installed_apps = UninstallManager.get_installed_packages()
         self.app_list.addItems(installed_apps)
 
     def search_apps(self):
-        """Filter daftar aplikasi berdasarkan input pencarian."""
         query = self.search_bar.text().lower()
         for i in range(self.app_list.count()):
             item = self.app_list.item(i)
             item.setHidden(query not in item.text().lower())
 
     def uninstall_selected(self):
-        """Uninstall aplikasi yang dipilih oleh pengguna."""
         selected_item = self.app_list.currentItem()
         if selected_item:
             app_name = selected_item.text()
