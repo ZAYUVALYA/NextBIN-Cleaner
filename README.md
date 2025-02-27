@@ -1,5 +1,7 @@
 # NextBIN - Ubuntu System Cleaner & Resource Manager
 
+![NextBIN Icon](https://raw.githubusercontent.com/ZAYUVALYA/NextBIN-Cleaner/refs/heads/main/NextBIN.png)
+
 **Status: In Development** 🚀
 
 NextBIN is a lightweight yet powerful system utility designed for Ubuntu-based Linux distributions. It offers essential tools for system maintenance, including cleaning cache, uninstalling applications, monitoring battery usage, and optimizing performance with a modern user interface built using **PyQt6**.
