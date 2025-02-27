@@ -3,7 +3,7 @@
 ## 1. Automated Installation (Recommended)
 For the easiest setup, use the installation script:
 ```bash
-wget https://raw.githubusercontent.com/yourusername/NextBIN/main/install.sh -O install.sh && chmod +x install.sh && ./install.sh
+wget https://raw.githubusercontent.com/ZAYUVALYA/NextBIN-Cleaner/main/install.sh -O install.sh && chmod +x install.sh && ./install.sh
 ```
 This script will:
 - Install required system dependencies
@@ -22,8 +22,8 @@ sudo apt update && sudo apt install -y python3 python3-pip python3-pyqt6 python3
 
 ### **Step 2: Clone the Repository**
 ```bash
-git clone https://github.com/yourusername/NextBIN.git
-cd NextBIN
+git clone https://github.com/ZAYUVALYA/NextBIN-Cleaner.git
+cd NextBIN-Cleaner
 ```
 
 ### **Step 3: Run NextBIN**

@@ -22,7 +22,7 @@ Future updates will expand these capabilities to include deeper system optimizat
 ### **1. Automated Installation (Recommended)**
 NextBIN can be installed using a simple script. Run the following command:
 ```bash
-wget https://raw.githubusercontent.com/yourusername/NextBIN/main/install.sh -O install.sh && chmod +x install.sh && ./install.sh
+wget https://raw.githubusercontent.com/ZAYUVALYA/NextBIN-Cleaner/main/install.sh -O install.sh && chmod +x install.sh && ./install.sh
 ```
 This will automatically:
 - Install required dependencies
