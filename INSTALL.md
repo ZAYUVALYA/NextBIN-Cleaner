@@ -1,78 +1,46 @@
-# NextBIN - Installation Guide
+# NextBIN Installation Guide
 
-This guide provides detailed instructions on installing, setting up, running, and uninstalling NextBIN on Ubuntu-based Linux distributions.
-
----
-
-## 🔹 System Requirements
-- Ubuntu 20.04 / 22.04 / 24.04 or derivative distributions.
-- At least 512MB RAM.
-- Python 3 installed by default.
-
----
-
-## 🔧 Step 1: Install System Dependencies
-NextBIN requires some system packages to function correctly. Install them using:
+## 1. Automated Installation (Recommended)
+For the easiest setup, use the installation script:
 ```bash
-sudo apt update && sudo apt install tlp power-profiles-daemon policykit-1
+wget https://raw.githubusercontent.com/yourusername/NextBIN/main/install.sh -O install.sh && chmod +x install.sh && ./install.sh
 ```
-These packages ensure proper battery management and system optimization features.
+This script will:
+- Install required system dependencies
+- Clone the NextBIN repository
+- Set up the application icon and menu shortcut
+- Make NextBIN ready to use
 
----
+## 2. Manual Installation
+If you prefer manual installation, follow these steps:
 
-## 📦 Step 2: Install Python Dependencies
-Ensure all required Python dependencies are installed:
+### **Step 1: Install System Dependencies**
+Run the following command to install the required packages:
 ```bash
-pip install -r requirements.txt
+sudo apt update && sudo apt install -y python3 python3-pip python3-pyqt6 python3-psutil policykit-1 tlp power-profiles-daemon
 ```
-This step ensures that all required libraries, such as PyQt6 and psutil, are properly installed.
 
----
-
-## 🏗 Step 3: Build and Install NextBIN
-To package NextBIN as a `.deb` file and install it on your system:
+### **Step 2: Clone the Repository**
 ```bash
-make
-sudo dpkg -i build/nextbin-1.0.deb
+git clone https://github.com/yourusername/NextBIN.git
+cd NextBIN
 ```
-If there are any missing dependencies, fix them using:
-```bash
-sudo apt-get install -f
-```
-This ensures all required packages are installed and properly configured.
 
----
-
-## 🚀 Step 4: Running NextBIN
-Once installed, you can launch NextBIN using:
-```bash
-nextbin
-```
-If you prefer to run it manually from the source directory:
+### **Step 3: Run NextBIN**
 ```bash
 python3 src/main.py
 ```
-This is useful for development or debugging purposes.
+
+## 3. Uninstallation
+To remove NextBIN from your system, run:
+```bash
+rm -rf ~/.local/share/NextBIN
+rm -f ~/.local/share/applications/nextbin.desktop
+rm -f ~/.local/share/icons/hicolor/512x512/apps/NextBIN.png
+update-desktop-database
+```
+This will remove all files related to NextBIN from your system.
 
 ---
 
-## ❌ Uninstalling NextBIN
-To remove NextBIN from your system, use:
-```bash
-sudo dpkg --remove nextbin
-```
-This will remove the application but retain user data. To completely remove all NextBIN-related files, including configuration and cache, run:
-```bash
-sudo rm -rf /opt/nextbin
-sudo rm -f /usr/bin/nextbin
-```
-
----
-
-## ⚙️ Important Notes
-1. **Sudo Permissions:** Some features, such as cleaning APT cache and switching power modes, require administrative privileges. NextBIN will prompt for sudo access via `pkexec`.
-2. **Building from Source:** If you modify the source code, you need to rebuild the `.deb` package and reinstall it.
-3. **Updates:** Future improvements will include better dependency resolution and enhanced features.
-
-Stay updated for the latest enhancements! 🚀
-
+NextBIN is still in development. If you encounter any issues, please report them on GitHub! 🚀
