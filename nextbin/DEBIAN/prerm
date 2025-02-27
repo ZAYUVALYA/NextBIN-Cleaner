@@ -4,5 +4,8 @@ set -e
 echo "Removing NextBIN..."
 rm -rf /opt/nextbin
 rm -f /usr/bin/nextbin
+rm -f /usr/share/applications/nextbin.desktop
+rm -f /usr/share/icons/hicolor/512x512/apps/NextBIN.png
+update-desktop-database
 
 echo "Uninstallation completed!"

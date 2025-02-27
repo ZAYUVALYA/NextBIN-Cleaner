@@ -1,8 +1,13 @@
 #!/bin/bash
 set -e
 
-echo "Setting permissions for NextBIN..."
+echo "Installing NextBIN..."
 chmod +x /usr/bin/nextbin
 chmod +x /opt/nextbin/src/main.py
+
+echo "Adding NextBIN to the application menu..."
+cp /opt/nextbin/usr/share/applications/nextbin.desktop /usr/share/applications/
+cp /opt/nextbin/NextBIN.png /usr/share/icons/hicolor/512x512/apps/NextBIN.png
+update-desktop-database
 
 echo "Installation completed!"
