@@ -1,0 +1,5 @@
+# robots.txt
+User-agent: *
+Disallow:
+
+Sitemap: https://github.com/ZAYUVALYA/NextBIN-Cleaner/sitemap.xml
