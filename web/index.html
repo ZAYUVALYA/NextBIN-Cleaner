@@ -1,0 +1,157 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>NextBIN - System Cleaner and Resource Manager</title>
+    <link href="https://raw.githubusercontent.com/ZAYUVALYA/NextBIN-Cleaner/refs/heads/main/NextBIN.png" rel="icon"/>
+    <meta name="description" content="NextBIN is a powerful system cleaner and resource manager for Ubuntu. Clean your system, manage resources, and uninstall applications with ease. Built with Python and open-source.">
+    <meta property="og:title" content="NextBIN - System Cleaner and Resource Manager">
+    <meta property="og:description" content="NextBIN is a powerful system cleaner and resource manager for Ubuntu. Clean your system, manage resources, and uninstall applications with ease. Built with Python and open-source.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/ZAYUVALYA/NextBIN-Cleaner/refs/heads/main/NextBIN.png">
+    <meta property="og:url" content="https://github.com/ZAYUVALYA/NextBIN-Cleaner">
+    <meta name="twitter:card" content="summary_large_image">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <header class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <img alt="NextBIN logo" class="h-10 w-10 mr-2" src="https://raw.githubusercontent.com/ZAYUVALYA/NextBIN-Cleaner/refs/heads/main/NextBIN.png"/>
+                <h1 class="text-2xl font-bold">NextBIN</h1>
+            </div>
+            <nav>
+                <ul class="hidden md:flex space-x-4 font-bold">
+                    <li><a class="hover:text-gray-400 transition-all" href="#">Home</a></li>
+                    <li><a class="hover:text-gray-400 transition-all" href="#">Features</a></li>
+                    <li><a class="hover:text-gray-400 transition-all" href="#installation">Installation</a></li>
+                    <li><a class="hover:text-gray-400 transition-all" href="#">Contact</a></li>
+                </ul>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-white focus:outline-none">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <ul class="flex flex-col space-y-2 mt-2 font-bold">
+                <li><a class="hover:text-gray-400 transition-all" href="#">Home</a></li>
+                <li><a class="hover:text-gray-400 transition-all" href="#">Features</a></li>
+                <li><a class="hover:text-gray-400 transition-all" href="#installation">Installation</a></li>
+                <li><a class="hover:text-gray-400 transition-all" href="#">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+    <main class="container mx-auto p-4">
+        <section class="text-center my-8">
+            <div class="flex justify-center items-center mb-4">
+                <img alt="NextBIN logo" class="h-16 w-16 mr-4" src="https://raw.githubusercontent.com/ZAYUVALYA/NextBIN-Cleaner/refs/heads/main/NextBIN.png"/>
+                <img alt="Ubuntu logo" class="h-16 w-16" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/UbuntuCoF.svg/1024px-UbuntuCoF.svg.png"/>
+            </div>
+            <h2 class="text-4xl font-bold mb-4">NextBIN - A system cleaner and resource manager for Ubuntu</h2>
+            <p class="text-lg mb-8">Keep your system clean and running smoothly with NextBIN. Download now and experience the difference.</p>
+            <a class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all" href="#installation">Installation</a>
+        </section>
+        <section class="my-8">
+            <h3 class="text-3xl font-bold mb-4">Features</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-gray-800 p-4 rounded transition-all hover:bg-gray-700 text-center" data-sr="enter bottom">
+                    <img alt="Illustration of system cleaning process" class="mb-4 rounded mx-auto" height="200" src="https://storage.googleapis.com/a1aa/image/zBDmvhIs7HD4W_KqUxkPlCFK0NqKiBU5bcUT2YfeUKk.jpg" width="300"/>
+                    <h4 class="text-xl font-bold mb-2">System Cleaner</h4>
+                    <p>Efficiently clean your system to free up space and improve performance. NextBIN is the ultimate cleaner for Ubuntu, designed to remove browser cache, APT cache, thumbnail cache, and old kernels.</p>
+                </div>
+                <div class="bg-gray-800 p-4 rounded transition-all hover:bg-gray-700 text-center" data-sr="enter bottom">
+                    <img alt="Illustration of resource management" class="mb-4 rounded mx-auto" height="200" src="https://storage.googleapis.com/a1aa/image/VUNi7SibL74hje2JmcTnXVh8apHb8QYfGnwsltjXd7k.jpg" width="300"/>
+                    <h4 class="text-xl font-bold mb-2">Resource Management</h4>
+                    <p>Manage your system resources effectively to ensure smooth operation. With NextBIN, you can monitor CPU, memory, and disk usage in real-time, similar to htop.</p>
+                </div>
+                <div class="bg-gray-800 p-4 rounded transition-all hover:bg-gray-700 text-center" data-sr="enter bottom">
+                    <img alt="Illustration of real-time monitoring" class="mb-4 rounded mx-auto" height="200" src="https://storage.googleapis.com/a1aa/image/KC8uLZwMA8GgguHYc3EScACyvNPpXCtVLkO_cgxXadk.jpg" width="300"/>
+                    <h4 class="text-xl font-bold mb-2">Real-time Monitoring</h4>
+                    <p>Monitor your system in real-time to catch issues before they become problems. NextBIN provides a comprehensive view of your system's health and performance.</p>
+                </div>
+                <div class="bg-gray-800 p-4 rounded transition-all hover:bg-gray-700 text-center" data-sr="enter bottom">
+                    <img alt="Illustration of app uninstallation" class="mb-4 rounded mx-auto" height="200" src="https://storage.googleapis.com/a1aa/image/UninstallManager.jpg" width="300"/>
+                    <h4 class="text-xl font-bold mb-2">App Uninstaller</h4>
+                    <p>Easily uninstall applications along with their dependencies. NextBIN's Uninstall Manager makes it simple to remove unwanted software from your system.</p>
+                </div>
+                <div class="bg-gray-800 p-4 rounded transition-all hover:bg-gray-700 text-center" data-sr="enter bottom">
+                    <img alt="Illustration of battery management" class="mb-4 rounded mx-auto" height="200" src="https://storage.googleapis.com/a1aa/image/BatteryManager.jpg" width="300"/>
+                    <h4 class="text-xl font-bold mb-2">Battery Manager</h4>
+                    <p>Monitor battery percentage, terminate high-resource processes, and switch power modes (Battery Saver, Balanced, Performance) with NextBIN's Battery Manager.</p>
+                </div>
+                <div class="bg-gray-800 p-4 rounded transition-all hover:bg-gray-700 text-center" data-sr="enter bottom">
+                    <img alt="Illustration of desktop integration" class="mb-4 rounded mx-auto" height="200" src="https://storage.googleapis.com/a1aa/image/DesktopIntegration.jpg" width="300"/>
+                    <h4 class="text-xl font-bold mb-2">Desktop Integration</h4>
+                    <p>NextBIN installs a desktop shortcut and system icon for quick access, making it easy to launch and use the application.</p>
+                </div>
+            </div>
+        </section>
+        <section id="installation" class="my-8">
+            <h3 class="text-3xl font-bold mb-4">Installation</h3>
+            <div class="bg-gray-800 p-4 rounded transition-all hover:bg-gray-700 text-center" data-sr="enter bottom">
+                <h4 class="text-xl font-bold mb-2">Automatic Installation</h4>
+                <p>Run the following command in your terminal:</p>
+                <div class="overflow-x-auto">
+                    <pre class="bg-gray-700 p-2 rounded"><code id="install-command">wget https://raw.githubusercontent.com/ZAYUVALYA/NextBIN-Cleaner/main/install.sh -O install.sh && chmod +x install.sh && ./install.sh</code></pre>
+                </div>
+                <button class="mt-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded transition-all" onclick="copyToClipboard()">Copy</button>
+            </div>
+            <div class="bg-gray-800 p-4 rounded mt-4 transition-all hover:bg-gray-700 text-center" data-sr="enter bottom">
+                <h4 class="text-xl font-bold mb-2">Manual Installation</h4>
+                <p>Follow the instructions provided in the <a class="text-blue-500 hover:underline" href="https://github.com/ZAYUVALYA/NextBIN-Cleaner/blob/main/INSTALL.md">INSTALL.md</a> file on our GitHub repository.</p>
+            </div>
+        </section>
+        <section class="my-8">
+            <h3 class="text-3xl font-bold mb-4">About NextBIN</h3>
+            <p class="text-lg mb-8">NextBIN is an open-source project developed to provide a comprehensive system cleaner and resource manager for Ubuntu-based Linux distributions. Built using Python and PyQt6, NextBIN offers a modern user interface and essential tools for system maintenance. Whether you need to clean your system, manage resources, or uninstall applications, NextBIN has you covered.</p>
+            <p class="text-lg mb-8">As a cleaner for Ubuntu, NextBIN helps you remove unnecessary files and free up space. It also serves as a Linux cleaner, providing tools to optimize your system's performance. With features like app uninstaller and package remover, NextBIN makes it easy to manage your software and keep your system running smoothly.</p>
+            <p class="text-lg mb-8">NextBIN is designed to be user-friendly and efficient, making it the perfect choice for both beginners and advanced users. Its open-source nature allows for continuous improvement and contributions from the community. Join us on GitHub and be a part of the NextBIN project!</p>
+        </section>
+    </main>
+    <footer class="bg-gray-800 p-4 mt-8">
+        <div class="container mx-auto text-center">
+            <p>© <span id="current-year"></span> NextBIN. All rights reserved. Developed by ZAYUVALYA.</p>
+            <div class="flex justify-center space-x-4 mt-2">
+                <a class="hover:text-gray-400 transition-all" href="#"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            var menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        ScrollReveal().reveal('[data-sr]', {
+            duration: 1000,
+            distance: '50px',
+            easing: 'ease-in-out',
+            origin: 'bottom',
+            reset: true
+        });
+
+        function copyToClipboard() {
+            var copyText = document.getElementById("install-command").textContent;
+            navigator.clipboard.writeText(copyText).then(function() {
+                alert("Copied to clipboard!");
+            }, function(err) {
+                alert("Failed to copy text: ", err);
+            });
+        }
+
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
