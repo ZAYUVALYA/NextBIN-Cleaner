@@ -2,4 +2,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://github.com/ZAYUVALYA/NextBIN-Cleaner/sitemap.xml
+Sitemap: https://zayuvalya.github.io/NextBIN-Cleaner/sitemap.xml
