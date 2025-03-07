@@ -1,63 +1,75 @@
 # NextBIN
 
-NextBIN is a system management application for Ubuntu designed to help users manage their system more easily and efficiently. It includes various features for cleaning the system, managing applications, and optimizing performance.
+NextBIN is an advanced system management tool designed specifically for Ubuntu. It provides powerful utilities to optimize, clean, and manage your system efficiently. With a modern interface and real-time monitoring, NextBIN helps users maintain peak system performance effortlessly.
 
-## 📌 Key Features
+## 🚀 Features
 
-### 🔹 System Cleaner
-- Removes browser cache (Firefox, Chrome, Chromium)
-- Clears APT cache to free up storage space
-- Deletes unnecessary thumbnail cache
-- Removes old, unused kernels
+### 🧹 System Cleaner
+- **Browser Cache Cleanup**: Removes cached data from Firefox, Chrome, and Chromium.
+- **APT Cache Cleanup**: Clears package manager cache to free up disk space.
+- **Thumbnail Cache Cleanup**: Deletes unnecessary thumbnails from the system.
+- **Old Kernel Removal**: Identifies and removes outdated Linux kernels.
 
-### 🔹 Uninstall Manager
-- Completely removes Debian applications
-- Cleans up residual files after uninstallation
-- Displays a list of removable applications
+### 🗑️ Uninstall Manager
+- **Complete Debian Package Removal**: Uninstalls applications along with their dependencies.
+- **Residual File Cleanup**: Eliminates leftover files after uninstallation.
+- **Application List Display**: Provides a list of installed applications for easy management.
 
-### 🔹 Battery Manager
-- Displays real-time battery status
-- Shows power consumption of each application
-- Allows users to close apps that drain battery
-- Power mode selection (Battery Saver, Balanced, Performance)
+### 🔋 Battery Manager
+- **Real-time Battery Status**: Monitors current battery level and usage.
+- **Per-App Power Consumption**: Displays power usage for each running application.
+- **End Task Functionality**: Allows force-closing battery-draining apps.
+- **Power Mode Selection**: Switch between Battery Saver, Balanced, and Performance modes.
 
-### 🔹 RAM Booster
-- Displays real-time RAM usage
-- Provides a "BOOST RAM" button to clear RAM cache
+### 🚀 RAM Booster
+- **Live RAM Usage Monitoring**: Tracks memory consumption in real time.
+- **Memory Optimization**: Provides a "BOOST RAM" button to clear unnecessary memory usage.
 
 ## 📖 Documentation
+For detailed installation instructions, usage, and troubleshooting, refer to [INSTALL.md](INSTALL.md).
 
-### **📥 Installation**
-#### **1. Using the Install Script (Recommended)**
-Run the following command in the terminal:
-```bash
-wget https://raw.githubusercontent.com/ZAYUVALYA/NextBIN-Cleaner/main/install.sh -O install.sh && chmod +x install.sh && ./install.sh
+## 🛠️ Development
+### 🔹 Tech Stack
+NextBIN is built using the following technologies:
+- **Python 3** – Core logic and system management.
+- **PyQt6** – Modern UI framework for the graphical interface.
+- **psutil** – System monitoring for CPU, RAM, and battery.
+- **policykit-1** – For handling system-level permissions securely.
+
+### 🔹 Project Structure
+```
+NextBIN/
+│── src/                     # Source code directory
+│   │── main.py              # Main application entry point
+│   │── ui/                  # UI components
+│   │   │── main_window.py   # Main window layout
+│   │   │── cleaner_ui.py    # Cleaner interface
+│   │   │── uninstall_ui.py  # Uninstall manager interface
+│   │   │── battery_ui.py    # Battery manager interface
+│   │   │── ram_booster_ui.py # RAM booster interface
+│   │── core/                # Core system functionalities
+│   │   │── cleaner.py       # System cleaner logic
+│   │   │── uninstall.py     # Uninstall manager logic
+│   │   │── battery.py       # Battery management logic
+│   │   │── ram_booster.py   # RAM management logic
+│   │── assets/              # Icons and styling assets
+│
+│── LICENSE                  # Project license
+│── README.md                # Project documentation
+│── INSTALL.md               # Installation guide
+│── requirements.txt         # Dependencies list
+│── install.sh               # Install script
+│── NextBIN.png              # Application logo
 ```
 
-#### **2. Manual Installation**
-```bash
-sudo apt update && sudo apt install -y python3 python3-pip python3-pyqt6 python3-psutil policykit-1 power-profiles-daemon
+## 🔧 Contribution
+Contributions are welcome! If you’d like to improve NextBIN, feel free to:
+- **Submit Issues**: Report bugs or request features via GitHub Issues.
+- **Fork & Pull Requests**: Implement new features or fix bugs and submit a pull request.
+- **Enhance Documentation**: Improve existing docs for better clarity.
 
-git clone https://github.com/ZAYUVALYA/NextBIN-Cleaner.git
-cd NextBIN-Cleaner
-python3 src/main.py
-```
-
-### **🚀 Running NextBIN**
-```bash
-python3 src/main.py
-```
-
-### **🗑️ Uninstalling NextBIN**
-```bash
-rm -rf ~/.local/share/NextBIN
-rm -f ~/.local/share/applications/nextbin.desktop
-rm -f ~/.local/share/icons/hicolor/512x512/apps/NextBIN.png
-update-desktop-database
-```
-
-## 🛠️ Contribution
-NextBIN is still under development. If you would like to contribute, feel free to submit a pull request or report issues on the repository.
+## ⚖️ License
+NextBIN is released under the **MIT License**. See [LICENSE](LICENSE) for more details.
 
 ---
-**NextBIN** – Clean, Manage, and Optimize Your Ubuntu System with Ease! 🚀
+**NextBIN – Optimize, Clean, and Manage Your Ubuntu System Efficiently! 🚀**
