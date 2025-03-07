@@ -1,9 +1,0 @@
-Package: nextbin
-Version: 1.0
-Section: utils
-Priority: optional
-Architecture: all
-Maintainer: ZAYUVALYA vivaldi.businessmail@gmail.com
-Depends: python3, python3-pyqt6, python3-psutil, policykit-1, power-profiles-daemon, tlp
-Description: NextBIN - Ubuntu System Cleaner & Resource Manager
- A system utility for managing battery, cleaning cache, and uninstalling apps.
