@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QCheckBox, QHBoxLayout, QGridLayout
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QCheckBox, QHBoxLayout, QGridLayout, QProgressBar
 from PyQt6.QtGui import QPixmap, QFont
 from PyQt6.QtCore import Qt
 from core.cleaner import Cleaner
@@ -8,75 +8,87 @@ class CleanerUI(QWidget):
 
     def __init__(self):
         super().__init__()
+        self.checkboxes = {}  # Menyimpan referensi checkbox
         self.init_ui()
 
     def init_ui(self):
-        # Set stylesheet for elegant dark theme
+        # Set modern stylesheet
         self.setStyleSheet("""
             QWidget {
-                background-color: #0B192C;  /* Dark Blue Background */
-                color: #F5F5F5;  /* Cream White Text */
+                background-color: #121B2D;  /* Dark background */
+                color: #F5F5F5;
                 font-family: Arial;
             }
             QLabel {
                 font-size: 16px;
             }
             QPushButton {
-                background-color: #00CCDD;  /* Neon Blue for Buttons */
-                color: #F5F5F5;  /* Cream White Text */
+                background-color: #00AABB;
+                color: white;
                 font-size: 16px;
-                padding: 10px;
-                border-radius: 10px;
+                padding: 12px;
+                border-radius: 8px;
                 border: none;
             }
             QPushButton:hover {
-                background-color: #00AABB;  /* Darker Neon Blue on Hover */
+                background-color: #008899;
             }
             QCheckBox {
                 font-size: 14px;
-                color: #F5F5F5;  /* Cream White Text */
+                color: #F5F5F5;
                 padding: 5px;
+            }
+            QProgressBar {
+                border: 2px solid #00AABB;
+                border-radius: 5px;
+                text-align: center;
+            }
+            QProgressBar::chunk {
+                background-color: #00AABB;
             }
         """)
 
         layout = QVBoxLayout()
         self.setLayout(layout)
 
-        # Application Title
-        title_label = QLabel("Cleaner")
-        title_label.setFont(QFont("Arial", 20, QFont.Weight.Bold))
+        # Title
+        title_label = QLabel("System Cleaner")
+        title_label.setFont(QFont("Arial", 22, QFont.Weight.Bold))
         title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(title_label)
 
-        # Cache Size Information
-        self.cache_info_label = QLabel("Checking storage...")
-        self.cache_info_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        layout.addWidget(self.cache_info_label)
+        # Progress Bar for Cache Size
+        self.cache_progress = QProgressBar()
+        self.cache_progress.setMaximum(100)
+        self.cache_progress.setValue(0)
+        self.cache_progress.setFormat("Scanning...")
+        layout.addWidget(self.cache_progress)
 
-        # Grid Layout for Checkboxes and Icons
+        # Grid Layout for Cleaning Options
         grid_layout = QGridLayout()
 
-        # Checkboxes for Cleaning Options with Icons
-        self.cb_browser_cache = self.create_checkbox_with_icon("Clear Browser Cache", "browser.svg")
-        self.cb_apt_cache = self.create_checkbox_with_icon("Clear APT Cache", "ubuntu-apt.svg")
-        self.cb_thumbnail_cache = self.create_checkbox_with_icon("Clear Thumbnail Cache", "thumbnail.svg")
-        self.cb_old_kernels = self.create_checkbox_with_icon("Remove Old Kernels", "old-karnel.svg")
+        self.checkboxes["browser_cache"], cb1 = self.create_checkbox_with_icon("Clear Browser Cache", "browser.svg")
+        self.checkboxes["apt_cache"], cb2 = self.create_checkbox_with_icon("Clear APT Cache", "ubuntu-apt.svg")
+        self.checkboxes["thumbnail_cache"], cb3 = self.create_checkbox_with_icon("Clear Thumbnail Cache", "thumbnail.svg")
+        self.checkboxes["old_kernels"], cb4 = self.create_checkbox_with_icon("Remove Old Kernels", "old-karnel.svg")
 
-        grid_layout.addWidget(self.cb_browser_cache, 0, 0)
-        grid_layout.addWidget(self.cb_apt_cache, 0, 1)
-        grid_layout.addWidget(self.cb_thumbnail_cache, 1, 0)
-        grid_layout.addWidget(self.cb_old_kernels, 1, 1)
+        self.cb_references = [cb1, cb2, cb3, cb4]  # Menyimpan referensi agar tidak terhapus
+
+        grid_layout.addWidget(self.checkboxes["browser_cache"], 0, 0)
+        grid_layout.addWidget(self.checkboxes["apt_cache"], 0, 1)
+        grid_layout.addWidget(self.checkboxes["thumbnail_cache"], 1, 0)
+        grid_layout.addWidget(self.checkboxes["old_kernels"], 1, 1)
 
         layout.addLayout(grid_layout)
 
         # Clean Button
         self.clean_button = QPushButton("Clean Now")
         self.clean_button.setFont(QFont("Arial", 14, QFont.Weight.Bold))
-        self.clean_button.setStyleSheet("background-color: #FFF100; color: #0B192C;")  
+        self.clean_button.setStyleSheet("background-color: #FFCC00; color: #121B2D;")
         self.clean_button.clicked.connect(self.clean_selected)
         layout.addWidget(self.clean_button, alignment=Qt.AlignmentFlag.AlignCenter)
 
-        # Update cache information when the application starts
+        # Update cache size information
         self.update_cleanable_sizes()
 
     def create_checkbox_with_icon(self, text, icon_name):
@@ -85,31 +97,51 @@ class CleanerUI(QWidget):
 
         # Icon
         icon_label = QLabel()
-        icon_label.setPixmap(QPixmap(self.ICONS_PATH + icon_name).scaled(24, 24, Qt.AspectRatioMode.KeepAspectRatio))
+        icon_label.setPixmap(QPixmap(self.ICONS_PATH + icon_name).scaled(28, 28, Qt.AspectRatioMode.KeepAspectRatio))
         checkbox_layout.addWidget(icon_label)
 
-        # Checkbox
-        checkbox = QCheckBox(text)
+        # Checkbox with Label for File Size
+        checkbox = QCheckBox(f"{text} (0 B)")
         checkbox_layout.addWidget(checkbox)
         checkbox_layout.addStretch()
 
-        return checkbox_widget
+        return checkbox_widget, checkbox
 
     def update_cleanable_sizes(self):
+        """Mengupdate ukuran cache yang bisa dibersihkan"""
         sizes = Cleaner.get_cleanable_sizes()
-        self.cache_info_label.setText(
-            f"Browser Cache: {sizes['browser_cache']} MB | "
-            f"APT Cache: {sizes['apt_cache']} MB | "
-            f"Thumbnail Cache: {sizes['thumbnail_cache']} MB | "
-            f"Old Kernels: {sizes['old_kernels']} MB"
-        )
+
+        size_labels = {
+            "browser_cache": sizes['browser_cache'],
+            "apt_cache": sizes['apt_cache'],
+            "thumbnail_cache": sizes['thumbnail_cache'],
+            "old_kernels": sizes['old_kernels']
+        }
+
+        for key, checkbox_widget in self.checkboxes.items():
+            checkbox = checkbox_widget.findChild(QCheckBox)
+            checkbox.setText(f"{checkbox.text().split(' (')[0]} ({self.format_size(size_labels[key])})")
+
+        total_cache = sum(size_labels.values())
+        self.cache_progress.setValue(min(100, int((total_cache / 5000) * 100)))  # Anggap 5000MB batas maksimum
+        self.cache_progress.setFormat(f"Total Cleanable: {self.format_size(total_cache)}")
+
+    def format_size(self, size_in_bytes):
+        """Mengubah ukuran byte ke KB, MB, atau GB"""
+        if size_in_bytes >= 1_073_741_824:
+            return f"{size_in_bytes / 1_073_741_824:.2f} GB"
+        elif size_in_bytes >= 1_048_576:
+            return f"{size_in_bytes / 1_048_576:.2f} MB"
+        elif size_in_bytes >= 1024:
+            return f"{size_in_bytes / 1024:.2f} KB"
+        else:
+            return f"{size_in_bytes} B"
 
     def clean_selected(self):
+        """Membersihkan cache berdasarkan opsi yang dipilih pengguna"""
         options = {
-            "browser_cache": self.cb_browser_cache.findChild(QCheckBox).isChecked(),
-            "apt_cache": self.cb_apt_cache.findChild(QCheckBox).isChecked(),
-            "thumbnail_cache": self.cb_thumbnail_cache.findChild(QCheckBox).isChecked(),
-            "old_kernels": self.cb_old_kernels.findChild(QCheckBox).isChecked()
+            key: checkbox.findChild(QCheckBox).isChecked()
+            for key, checkbox in self.checkboxes.items()
         }
         Cleaner.clean_selected(options)
         self.update_cleanable_sizes()
